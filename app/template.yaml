@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  blog
+
+  Sample SAM Template for blog
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+Parameters:
+  Stage:
+    Type: String
+    Default: dev
+  VpcId:
+    Type: String
+
+Resources:
+  MyApp:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: myapp/index.handler
+      Runtime: nodejs12.x
+      Timeout: 10
+      Policies:
+        - AWSLambdaExecute
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /path
+            Method: get
+
