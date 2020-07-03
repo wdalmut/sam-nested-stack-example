@@ -5,5 +5,5 @@ exports.handler = async (event, context) => {
     body: JSON.stringify("ciao mondo")
   };
 
-  return respose
+  return response
 }
